@@ -81,6 +81,7 @@ $(document).ready(async function() {
             $(".quickMenu").stop().animate({"top": position + currentPosition + "px"}, 1000);
         });
 
+
         // Header
         $("#logout").click(function () {
             // body.append(form) -> body,  form.appendTo(body) -> form
