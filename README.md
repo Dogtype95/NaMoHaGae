@@ -4,6 +4,7 @@
 프로젝트 팀 <!DOGTYPE>의 파이널 프로젝트
 ------------------------------------------------
 [Project Site] ~~https://www.namohagae.kro.kr~~  서버 배포 중단
+
 Test 계정: ~~spring/1234~~  
   
 [Team Notion] https://dogtype.notion.site/DOGTYPE-8f42f515d4b64ce7b329e33df661dbdf  
