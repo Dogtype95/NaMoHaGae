@@ -9,11 +9,13 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+//웹소켓 설정 파일
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
+    // 웹소켓 사용 영역 (채팅, 퍼칭, 알람 서비스)
     private final ChatWebSocketHandler chatWebSocketHandler;
     private final ChatPuchingWebsocketHandler chatImageWebsocketHandler;
     private final NotificationWebSocketHandler notificationWebSocketHandler;
@@ -21,7 +23,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         // 소켓연결 주소와 소켓접근가능 도메인 설정
-        String os =  System.getProperty("os.name").toLowerCase();
+        String os =  System.getProperty("os.name").toLowerCase(); // 서버 os 확인 후 도메인 설정 (운영 : linux 개발 : 그 외)
         if (os.contains("linux")) {
             registry.addHandler(chatWebSocketHandler,"/chatroom").setAllowedOrigins("https://namohagae.kro.kr","https://www.namohagae.kro.kr");
             registry.addHandler(chatImageWebsocketHandler,"/puching").setAllowedOrigins("https://namohagae.kro.kr","https://www.namohagae.kro.kr");

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+// 채팅 Dao 매퍼
 @Mapper
 public interface ChatDao {
 

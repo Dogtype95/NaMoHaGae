@@ -67,7 +67,7 @@ public class ChatWebSocketHandler implements WebSocketHandler {
                 receiverSession.sendMessage(textMessage);
             }
         } else {
-            // 수신자가 지정되지 않은 경우, 메시지를 전송하지 않습니다. 여기에 메세지전송 실패를 리턴해줘서 채팅창에 찍자
+            // 수신자가 지정되지 않은 경우, 메시지를 전송하지 않음. 여기에 메세지전송 실패를 리턴해줘서 채팅창에 찍자
         }
 
 
@@ -78,8 +78,8 @@ public class ChatWebSocketHandler implements WebSocketHandler {
 
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-        // WebSocket 통신 중 에러가 발생하면 호출됩니다.
-        System.out.println("웹소켓이 에러났당@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        // WebSocket 통신 중 에러가 발생하면 호출
+        System.out.println("웹소켓이 에러");
 
     }
 

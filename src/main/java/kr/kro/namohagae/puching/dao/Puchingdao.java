@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+// 퍼칭 기능 Dao
 @Mapper
 public interface Puchingdao {
 
@@ -19,15 +20,15 @@ public interface Puchingdao {
     public List<PuchingDto.readUser> findByUsers(String url, Double latitude,Double longitude,Integer startrownum,Integer endrownum,Integer memberNo);
 
 
-    public Integer checkPuching(Integer senderNo,Integer receiverNo);  // 체크 잘되는지 테스트 필요
+    public Integer checkPuching(Integer senderNo,Integer receiverNo);  //퍼칭 체크
 
-    public void savePuching(Puching puching);
+    public void savePuching(Puching puching); //퍼칭 저장
 
-    public void updatePuchingStatus(Integer messageNo,String puchingStatus);
+    public void updatePuchingStatus(Integer messageNo,String puchingStatus);//퍼칭 상태변경
 
-    public Integer checkWritePuchingReviewBysenderNo(Integer senderNo,Integer messageNo);
+    public Integer checkWritePuchingReviewBysenderNo(Integer senderNo,Integer messageNo); //퍼칭 신청 상대 체크
 
-    public String checkPuchingStatus(Integer messageNo);
+    public String checkPuchingStatus(Integer messageNo); //퍼칭상태 정보 Get
 
-    public Integer findPuchingNoBySenderNoAndReceiverNo(Integer senderNo,Integer receiverNo);
+    public Integer findPuchingNoBySenderNoAndReceiverNo(Integer senderNo,Integer receiverNo); // 퍼칭번호로 보낸사람과 받은사람 No Get
 }

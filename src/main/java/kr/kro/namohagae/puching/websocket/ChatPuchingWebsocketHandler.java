@@ -11,8 +11,16 @@ import org.springframework.web.socket.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
+/**
+ *  작성자 : 김현욱
+ * 
+ * * */
+
+//채팅웹소켓 핸들러
+//웹소켓 서비스의 실제로직을 핸들러에 작성 후 해당 서비스가 필요한 클래스에 빈을 주입하여 사용
 @Component
-public class ChatPuchingWebsocketHandler implements WebSocketHandler{
+public class ChatPuchingWebsocketHandler implements WebSocketHandler{ // 웹소켓 핸들러 인터페이스 
 
     @Autowired
     private ChatService chatService;
@@ -22,28 +30,34 @@ public class ChatPuchingWebsocketHandler implements WebSocketHandler{
     private static final Map<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
 
 
+    //웹소켓 연결 시 웹소켓 유저 세션에 기존 멤버세션값 세팅 (동기화)
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        String username= session.getPrincipal().getName();
-        session.getAttributes().put("username", username);
+        String username= session.getPrincipal().getName(); // 웹소켓 세션 유저값
+        session.getAttributes().put("username", username); // user값 세팅
         sessions.put(username,session);
     }
 
+    // 메시지 전달
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 
+        // 메시지 발신자 정보 get
         String sendusername= session.getPrincipal().getName();
         String payload = message.getPayload().toString();
 
+        //메시지 내용 파싱
         JSONObject jsonPayload = new JSONObject(payload);
         String receiverUsername = jsonPayload.getString("receiverUsername");
         String messageContent = jsonPayload.getString("message");
 
+        //json으로 response 값 세팅
         JSONObject responseJson = new JSONObject();
         responseJson.put("sendername", sendusername);
         responseJson.put("receivername", receiverUsername);
         responseJson.put("message", messageContent);
 
+        // 취소 메시지 여부 확인
         if(messageContent.equals("cancel")){
             String content="<div class=\"puching-info\">\n" +
                     "<span class=\"puching-title\">퍼칭이 취소 되었습니다</span>\n" +
@@ -76,7 +90,6 @@ public class ChatPuchingWebsocketHandler implements WebSocketHandler{
 
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-        System.out.println("퍼칭웹소켓에러@@@@@@");
         System.out.println(exception);
     }
 

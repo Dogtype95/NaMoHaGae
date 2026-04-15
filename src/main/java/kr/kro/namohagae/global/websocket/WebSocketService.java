@@ -40,7 +40,8 @@ public class WebSocketService {
             }
         }
     }
-
+    
+    //알람 데이터 json으로 파싱 
     private String toJson(NotificationDto.FindAll notification) {
         Map<String, NotificationDto.FindAll> map=new HashMap<>();
         map.put("notification", notification);

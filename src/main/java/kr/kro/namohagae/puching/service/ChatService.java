@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+// 채팅 서비스
 @Service
 public class ChatService {
     @Autowired
@@ -33,22 +34,23 @@ public class ChatService {
     private NotificationService notificationService;
 
 
-
+    //전체 채팅 방 데이터 Get
     public List<ChatRoomDto.Read> findAllChatRoom(Integer myMemberNo) {
         return cdao.findAllChatRoom(ImageConstants.IMAGE_PROFILE_URL,myMemberNo);
     }
 
-
+    //채팅 메시지 저장 및 채팅방 생성
+    //return 생성해야 할 채팅방 수
     public Integer saveTextMessage(String senderEmail, String receiverEmail, String messageContent,String messageType){
         Member rmember = mdao.findByUsername(receiverEmail).get();
         Member smember =mdao.findByUsername(senderEmail).get();
         Integer senderNo=smember.getMemberNo();
         Integer receiverNo=rmember.getMemberNo();
-        Message message =  new MessageDto.MessageSave(senderNo,receiverNo,messageContent).toEntity(messageType);
-            cdao.saveMessage(message);
+        Message message =  new MessageDto.MessageSave(senderNo,receiverNo,messageContent).toEntity(messageType); // 메시지 객체 생성
+            cdao.saveMessage(message); // 메시지 저장
 
-        Boolean exists= cdao.existsByChatRoom(senderNo,receiverNo);
-        notificationService.save(rmember,smember.getMemberNickname()+"님에게 "+NotificationConstants.CHAT_CONTENT, NotificationConstants.CHATROOM_LINK);
+        Boolean exists= cdao.existsByChatRoom(senderNo,receiverNo); // 최초 메시지 여부
+        notificationService.save(rmember,smember.getMemberNickname()+"님에게 "+NotificationConstants.CHAT_CONTENT, NotificationConstants.CHATROOM_LINK); // 알람 생성
 
         if(!exists){
             cdao.saveChatRoom(senderNo,receiverNo);
@@ -58,10 +60,13 @@ public class ChatService {
         return 1;
     }
 
+    // 기존 채팅방 여부 확인
     public Integer existByChatRoom(String senderEmail,String receiverEmail){
-        Integer senderNo=mdao.findNoByUsername(senderEmail);
-        Integer receiverNo=mdao.findNoByUsername(receiverEmail);
-        if(cdao.existsByChatRoom(senderNo,receiverNo)==false){
+        Integer senderNo=mdao.findNoByUsername(senderEmail); //발신자 채팅방 check
+        Integer receiverNo=mdao.findNoByUsername(receiverEmail); //수신자 채팅방 check
+
+        // 공유하는 채팅방이 있는 지 check
+        if(cdao.existsByChatRoom(senderNo,receiverNo)==false){ 
             cdao.saveChatRoom(senderNo,receiverNo);
             cdao.saveChatRoom(receiverNo,senderNo);  //첫 메세지시 채팅방 2개 생성 각자 채팅방이 생성
             return 2;
@@ -70,17 +75,20 @@ public class ChatService {
         return 1;
     };
 
+    // 채팅 메시지 로그 get
     public List<MessageDto.MessageRead> findMessageLog(String senderEmail,Integer receiverNo){
             Integer senderNo = mdao.findNoByUsername(senderEmail);
         return  cdao.findAllMessageByReceiverNo(senderNo,receiverNo);
     }
 
+    // 채팅방 찾기
     public ChatRoomDto.Read findChatRoom(String userEmail,String receiverEmail) {
         Integer userNo =mdao.findNoByUsername(userEmail);
         Integer receiverNo= mdao.findNoByUsername(receiverEmail);
         return cdao.findChatRoom(ImageConstants.IMAGE_PROFILE_URL,userNo,receiverNo);
     }
 
+    //채팅방 존재여부 확인
     public ChatRoomDto.Read existchatRoom(String username,String receiverEmail) {
         Integer userNo= mdao.findNoByUsername(username);
         Integer receiverNo= mdao.findNoByUsername(receiverEmail);
@@ -89,12 +97,15 @@ public class ChatService {
             }
         return null;
     }
+
+    //이미지 저장
     public Message saveImage(MultipartFile image,String userEmail,Integer receiverNo){
         Integer senderNo=mdao.findNoByUsername(userEmail);
-        String imageName="default.jpg";
-        if(image!=null && !image.isEmpty()) {
-            int postionOfDot = image.getOriginalFilename().lastIndexOf(".");
-            String ext = image.getOriginalFilename().substring(postionOfDot);
+        String imageName="default.jpg"; // 임시 네임
+
+        if(image!=null && !image.isEmpty()) { //브라우저에서 받은 이미지 객체(MultipartFile) null 체크
+            int postionOfDot = image.getOriginalFilename().lastIndexOf("."); // 확장자 앞 점(dot .) 위치 int형으로 저장
+            String ext = image.getOriginalFilename().substring(postionOfDot); // 앞의 dot 위치를 이용해 이미지 확장자 변수로 저장
 
             imageName=UUID.randomUUID()+ext;
             File file = new File(ImageConstants.IMAGE_CHAT_DIRECTORY, imageName);
