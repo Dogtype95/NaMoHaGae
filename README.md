@@ -19,7 +19,7 @@ Test 계정: ~~spring/1234~~
 ![나뭐하개 소개 +2](https://github.com/user-attachments/assets/3bcb1559-78a9-4b9c-bf24-42306f3dcc2f)
 ![나뭐하개 소개 +3](https://github.com/user-attachments/assets/fc7bc172-3124-4c0e-b541-b7df40be556b)
 ![나뭐하개 소개 +4](https://github.com/user-attachments/assets/57317a17-2833-4dc3-98fc-947a7d216692)
-![나뭐하개 소개 +5](https://github.com/user-attachments/assets/768b26a3-7356-4bb0-bb12-98af8d02dbc2)
+![나뭐하개 소개 +5](https://github.com/user-attachments/assets/febef7c3-a422-4e41-b96c-a1991cf1c8a4)
 ![나뭐하개 소개 +6](https://github.com/user-attachments/assets/2cd5221c-c39f-44a0-a988-a52b6501ee20)
 ![나뭐하개 소개 +7](https://github.com/user-attachments/assets/6fa4e221-6a63-418f-8460-77b7b6d9ac35)
 ![나뭐하개 소개 +8](https://github.com/user-attachments/assets/ad74ccfe-a94b-4be1-a214-937fb44c604a)
