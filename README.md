@@ -9,7 +9,6 @@ Test 계정: ~~spring/1234~~
   
 [Team Notion] https://dogtype.notion.site/DOGTYPE-8f42f515d4b64ce7b329e33df661dbdf  
 
-
 ![나뭐하개 소개_3](https://github.com/GeeHwanee/NaMoHaGae/assets/120438094/01e65a0a-8be4-4805-80c0-f2debf751edb)
 ![나뭐하개 소개_4](https://github.com/GeeHwanee/NaMoHaGae/assets/120438094/22d33f1c-6aee-4ccb-93de-b227ff5f15d0)
 ![나뭐하개 소개_5](https://github.com/GeeHwanee/NaMoHaGae/assets/120438094/72988c95-1cae-4610-9b37-a5ba721d1ef6)
@@ -20,7 +19,7 @@ Test 계정: ~~spring/1234~~
 ![나뭐하개 소개 +2](https://github.com/user-attachments/assets/3bcb1559-78a9-4b9c-bf24-42306f3dcc2f)
 ![나뭐하개 소개 +3](https://github.com/user-attachments/assets/fc7bc172-3124-4c0e-b541-b7df40be556b)
 ![나뭐하개 소개 +4](https://github.com/user-attachments/assets/57317a17-2833-4dc3-98fc-947a7d216692)
-![나뭐하개 소개 +5](https://github.com/user-attachments/assets/b4065273-8aa5-41e7-8a91-a77597432151)
+![나뭐하개 소개 +5](https://github.com/user-attachments/assets/768b26a3-7356-4bb0-bb12-98af8d02dbc2)
 ![나뭐하개 소개 +6](https://github.com/user-attachments/assets/2cd5221c-c39f-44a0-a988-a52b6501ee20)
 ![나뭐하개 소개 +7](https://github.com/user-attachments/assets/6fa4e221-6a63-418f-8460-77b7b6d9ac35)
 ![나뭐하개 소개 +8](https://github.com/user-attachments/assets/ad74ccfe-a94b-4be1-a214-937fb44c604a)
